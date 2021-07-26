@@ -1,5 +1,5 @@
 require("dotenv").config();
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import mongoose from 'mongoose';
 import {typeDefs, resolvers } from './schema';
 

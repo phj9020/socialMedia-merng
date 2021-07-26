@@ -1,4 +1,4 @@
-import PostModule from "../models/Post";
+import PostModule from "../../models/Post";
 
 export default {
     Query: {
