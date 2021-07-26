@@ -1,20 +1,7 @@
 require("dotenv").config();
 import { ApolloServer, gql } from 'apollo-server';
 import mongoose from 'mongoose';
-
-// The GraphQL schema
-const typeDefs = gql`
-    type Query {
-        sayHi : String!
-    }
-`;
-
-// A map of functions which return data for the schema.
-const resolvers = {
-    Query: {
-        sayHi: () => 'asdasd',
-    },
-};
+import {typeDefs, resolvers } from './schema';
 
 const server = new ApolloServer({
     typeDefs,
