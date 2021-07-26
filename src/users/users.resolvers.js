@@ -2,17 +2,16 @@ import userModule from "../../models/User";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import { UserInputError } from "apollo-server";
+import {validateRegisterInput} from '../util/validators';
 
 const resolverFn = async(_, { registerInput : {username, password, confirmPassword, email} }) => {
     
-    // password donest match 
-    if(password !== confirmPassword) {
-        throw new UserInputError("password and confirmPassword is not matched", {
-            errors: {
-                message: "password and confirmPassword are not matched"
-            }
-        })
-    };
+    // validate user data
+    const { valid, errors} = validateRegisterInput(username, password, confirmPassword, email);
+
+    if(!valid) {
+        throw new UserInputError('Errors', { errors });
+    }
 
     // make sure user doesnt already exist
     const alreadyExistEmail = await userModule.findOne({email});
@@ -32,7 +31,6 @@ const resolverFn = async(_, { registerInput : {username, password, confirmPasswo
         })
     }
 
-
     // hash the password and create auth token
     password = await bcrypt.hash(password, 12);
 
@@ -43,7 +41,6 @@ const resolverFn = async(_, { registerInput : {username, password, confirmPasswo
         email,
         createdAt: Date.now()
     });
-
 
     // save in MongoDB 
     const result = await newUser.save();
