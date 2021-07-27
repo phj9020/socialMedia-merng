@@ -26,3 +26,18 @@ export const validateRegisterInput = (username, password, confirmPassword, email
         valid: Object.keys(errors).length < 1
     }
 }
+
+export const validateLoginInput = (email, password) => {
+    const errors = {};
+    if(email.trim("") === '') {
+        errors.email = "email must not be empty"
+    }
+    if(password.trim("") === '') {
+        errors.password = "password must not be empty"
+    }
+
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
+    }
+}

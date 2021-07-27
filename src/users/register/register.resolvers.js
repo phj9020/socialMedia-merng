@@ -1,8 +1,8 @@
-import userModule from "../../models/User";
+import userModule from "../../../models/User";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import { UserInputError } from "apollo-server";
-import {validateRegisterInput} from '../util/validators';
+import {validateRegisterInput} from '../../util/validators';
 
 const resolverFn = async(_, { registerInput : {username, password, confirmPassword, email} }) => {
     
@@ -55,7 +55,7 @@ const resolverFn = async(_, { registerInput : {username, password, confirmPasswo
     
 
     return {
-        ...result._doc,
+        ...result.toJSON(),
         id: result.id,
         token
     }
