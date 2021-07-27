@@ -4,7 +4,7 @@ export default {
     Query: {
         async getPosts() {
             try {
-                const posts = await PostModule.find();
+                const posts = await PostModule.find().sort({ createdAt: -1});
                 return posts;
             } catch(err) {
                 throw new Error(err);

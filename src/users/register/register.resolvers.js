@@ -51,7 +51,7 @@ const resolverFn = async(_, { registerInput : {username, password, confirmPasswo
         id: result.id,
         email: result.email,
         username: result.username,
-    }, process.env.SECRET_KEY, { expiresIn : "1h"});
+    }, process.env.SECRET_KEY, { expiresIn : "24h"});
     
 
     return {
