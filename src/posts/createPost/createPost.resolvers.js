@@ -1,5 +1,5 @@
 import PostModule from "../../../models/Post";
-import {checkAuth, getUser} from '../../util/checkAuth';
+import {checkAuth} from '../../util/checkAuth';
 
 const resolverFn = async(_, {body}, context) => {
     const user = checkAuth(context);
