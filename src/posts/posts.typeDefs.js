@@ -7,7 +7,4 @@ export default gql`
         createdAt: String!
         username: String!
     }
-    type Query {
-        getPost : [Post]
-    }
 `

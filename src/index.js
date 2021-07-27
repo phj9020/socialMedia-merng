@@ -6,6 +6,7 @@ import {typeDefs, resolvers } from './schema';
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: (context) => (context)
 });
 
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
