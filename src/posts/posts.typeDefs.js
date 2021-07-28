@@ -1,6 +1,9 @@
 import {gql} from 'apollo-server';
 
 export default gql`
+    type Subscription {
+        newPost: Post!
+    }
     type Comment {
         id: ID!
         body: String!
@@ -19,5 +22,7 @@ export default gql`
         username: String!
         comments: [Comment]!
         likes: [Like]!
+        likeCount: Int!
+        commentCount: Int!
     }
 `

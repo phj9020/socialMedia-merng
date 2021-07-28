@@ -1,5 +1,6 @@
 import PostModule from "../../../models/Post";
 import {checkAuth} from '../../util/checkAuth';
+import pubsub from '../../pubsub';
 
 const resolverFn = async(_, {body}, context) => {
     const user = checkAuth(context);
@@ -12,6 +13,10 @@ const resolverFn = async(_, {body}, context) => {
     });
 
     const post = await newPost.save();
+
+    pubsub.publish('NEW_POST', {
+        newPost: post
+    })
 
     return post;
 }
