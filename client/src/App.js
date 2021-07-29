@@ -8,6 +8,8 @@ import NotFound from './routes/NotFound';
 import Register from './routes/Register';
 import MenuBar from './components/MenuBar';
 import { Container } from 'semantic-ui-react'
+import Post from './routes/Post';
+
 
 function App() {
   return (
@@ -19,9 +21,10 @@ function App() {
             <Route exact path="/" >
               <Home />
             </Route>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/404" component={NotFound} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/posts/:id" component={Post} />
+            <Route path="/404" component={NotFound} />
             <Redirect from="*" to="/404" />
           </Switch>
         </Container>
