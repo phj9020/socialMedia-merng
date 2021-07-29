@@ -4,7 +4,11 @@ import pubsub from '../../pubsub';
 
 const resolverFn = async(_, {body}, context) => {
     const user = checkAuth(context);
-    
+
+    if(body.trim("") === ""){
+        throw new Error("Post body must not be empty");
+    }
+
     const newPost = new PostModule({
         body, 
         user : user.id,
