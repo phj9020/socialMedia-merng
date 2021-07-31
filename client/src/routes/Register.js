@@ -49,19 +49,7 @@ function Register() {
     });
 
     const handleInputChange = (e) => {
-        if(e.currentTarget.name === "username") {
-            const { value } = e.currentTarget;
-            setValues({...values, username: value});
-        } else if(e.currentTarget.name === "password") {
-            const {value } = e.currentTarget;
-            setValues({...values, password: value});
-        } else if(e.currentTarget.name === "confirmPassword") {
-            const { value } = e.currentTarget;
-            setValues({...values, confirmPassword: value})
-        } else if (e.currentTarget.name === "email") {
-            const { value } = e.currentTarget;
-            setValues({...values, email: value})
-        }
+        setValues({...values, [e.currentTarget.name] : e.currentTarget.value});
     };
 
     const handleOnSubmit = (e) => {
