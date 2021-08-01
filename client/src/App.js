@@ -26,15 +26,15 @@ function App() {
               <Home />
             </Route>
             <Route path="/posts/:id" component={Post} />
-            <Route path="/404" component={NotFound} />
             {isLoggedIn ? null : (
               <>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
               </>
             )}
+            <Route path="/404" component={NotFound} />
+            <Redirect from="*" to="/404" />
           </Switch>
-          <Redirect from="*" to="/404" />
         </Container>
       </Router>
     </div>

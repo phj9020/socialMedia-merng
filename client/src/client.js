@@ -13,7 +13,7 @@ export const logUserIn = (token) => {
 export const logUserOut = ()=> {
     localStorage.removeItem(TOKEN);
     isLoggedInVar(false);
-    window.location.reload();
+    window.location.href = '/';
 }
 
 const httpLink = createHttpLink({
