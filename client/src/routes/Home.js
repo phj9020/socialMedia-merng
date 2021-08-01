@@ -1,6 +1,6 @@
 import React from 'react';
-import {useQuery, gql, useReactiveVar} from '@apollo/client';
-import { Grid } from 'semantic-ui-react';
+import {useQuery, useReactiveVar} from '@apollo/client';
+import { Grid, Transition } from 'semantic-ui-react';
 import PostCard from '../components/PostCard';
 import {isLoggedInVar} from '../client';
 import PostForm from '../components/PostForm';
@@ -23,11 +23,15 @@ function Home() {
                     </Grid.Column>
                 }
                 {loading ? <h1>loading post...</h1> : (
-                    data?.getPosts?.map(post => 
+                    <Transition.Group
+                    duration={200}
+                    >
+                    {data?.getPosts?.map(post => 
                     <Grid.Column key={post.id} style={{marginBottom: "20px"}}>
                         <PostCard post={post} />
                     </Grid.Column>
-                    )
+                    )}
+                    </Transition.Group>
                 )}
             </Grid.Row>
     </Grid>

@@ -3,6 +3,7 @@ import {checkAuth} from '../../util/checkAuth';
 import pubsub from '../../pubsub';
 
 const resolverFn = async(_, {body}, context) => {
+    console.log('createPost')
     const user = checkAuth(context);
 
     if(body.trim("") === ""){

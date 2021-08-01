@@ -13,3 +13,7 @@
     max-width: 500px;
     margin: 0px auto;
 }
+
+.message {
+    margin-bottom: 14px !important;
+}
