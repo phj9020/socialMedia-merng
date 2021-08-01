@@ -16,7 +16,6 @@ function PostCard({
         },
     }) {
 
-    console.log(comments.map(item => item.id))
 
     const handleLikePost = (e)=> {
         console.log("like post")

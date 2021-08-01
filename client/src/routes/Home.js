@@ -1,32 +1,15 @@
 import React from 'react';
-import {useQuery, gql} from '@apollo/client';
+import {useQuery, gql, useReactiveVar} from '@apollo/client';
 import { Grid } from 'semantic-ui-react';
-import PostCard from '../components/PostCard'
+import PostCard from '../components/PostCard';
+import {isLoggedInVar} from '../client';
+import PostForm from '../components/PostForm';
+import GET_POSTS from "../gql/getPosts";
 
-const GET_POSTS = gql`
-    query getPosts{
-        getPosts {
-            id
-            body
-            createdAt
-            likes {
-                username
-            }
-            comments {
-                id
-                username
-                createdAt
-                body
-            }
-            username
-            likeCount
-            commentCount
-        }
-    }
-`
 
 function Home() {
     const {loading, data} = useQuery(GET_POSTS);
+    const isLoggedIn = useReactiveVar(isLoggedInVar);
     
     return (
         <Grid columns={3}>
@@ -34,6 +17,11 @@ function Home() {
                 <h1>Recent Posts</h1>
             </Grid.Row>
             <Grid.Row>
+                {isLoggedIn && 
+                    <Grid.Column>
+                        <PostForm />
+                    </Grid.Column>
+                }
                 {loading ? <h1>loading post...</h1> : (
                     data?.getPosts?.map(post => 
                     <Grid.Column key={post.id} style={{marginBottom: "20px"}}>

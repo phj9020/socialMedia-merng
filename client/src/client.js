@@ -25,7 +25,7 @@ const authLink = setContext((_, { headers }) => {
     return {
         headers: {
         ...headers,
-        token: localStorage.getItem(TOKEN),
+        authorization: localStorage.getItem(TOKEN),
         }
     }
 });
@@ -37,7 +37,8 @@ const client = new ApolloClient({
     onError: ({ networkError, graphQLErrors }) => {
         console.log('graphQLErrors', graphQLErrors)
         console.log('networkError', networkError)
-    }
+    },
+    connectToDevTools: true,
 });
 
 export default client;
