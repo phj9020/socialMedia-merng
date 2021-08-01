@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Card, Icon, Label, Image } from "semantic-ui-react";
 import moment from 'moment';
 import {Link} from 'react-router-dom';
+import useUser from "../hooks/useUser";
+
 
 function PostCard({
         post: {
@@ -16,14 +18,13 @@ function PostCard({
         },
     }) {
 
+    const {data} = useUser();
 
     const handleLikePost = (e)=> {
         console.log("like post")
     };
 
-    const handleCommentPost = (e)=> {
-        console.log("comment")
-    }
+    
     return (
         <Card fluid>
             <Card.Content as={Link} to={`/posts/${id}`}>
@@ -45,7 +46,7 @@ function PostCard({
                         {likeCount}
                     </Label>
                 </Button>
-                <Button as='div' labelPosition='right' onClick={handleCommentPost}>
+                <Button labelPosition='right' as={Link} to={`/posts/${id}`}>
                     <Button color='teal' basic>
                         <Icon name='comments'/>
                     </Button>
@@ -53,6 +54,12 @@ function PostCard({
                         {commentCount}
                     </Label>
                 </Button>
+                {data && data?.me?.username === username ? 
+                    <Button as="div" color="red">
+                        delete
+                    </Button>
+                    : null
+                }
             </Card.Content>
         </Card>
     );

@@ -15,7 +15,7 @@ import { isLoggedInVar } from './client';
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-
+  console.log(isLoggedIn);
   return (
     <div className="App">
       <Router>
@@ -25,16 +25,16 @@ function App() {
             <Route exact path="/" >
               <Home />
             </Route>
+            <Route path="/posts/:id" component={Post} />
+            <Route path="/404" component={NotFound} />
             {isLoggedIn ? null : (
               <>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
               </>
             )}
-            <Route path="/posts/:id" component={Post} />
-            <Route path="/404" component={NotFound} />
-            <Redirect from="*" to="/404" />
           </Switch>
+          <Redirect from="*" to="/404" />
         </Container>
       </Router>
     </div>
