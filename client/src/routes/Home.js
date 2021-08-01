@@ -5,12 +5,13 @@ import PostCard from '../components/PostCard';
 import {isLoggedInVar} from '../client';
 import PostForm from '../components/PostForm';
 import GET_POSTS from "../gql/getPosts";
-
+import useUser from "../hooks/useUser";
 
 function Home() {
     const {loading, data} = useQuery(GET_POSTS);
     const isLoggedIn = useReactiveVar(isLoggedInVar);
-    
+    const {data: meData} = useUser();
+
     return (
         <Grid columns={3}>
             <Grid.Row className="page-title">
@@ -28,7 +29,7 @@ function Home() {
                     >
                         {data?.getPosts?.map(post => 
                         <Grid.Column key={post.id} style={{marginBottom: "20px"}}>
-                            <PostCard post={post} />
+                            <PostCard post={post} meData={meData} />
                         </Grid.Column>
                         )}
                     </Transition.Group>

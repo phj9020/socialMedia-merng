@@ -79,6 +79,7 @@ function Login() {
                         placeholder='Username' 
                         name="username" 
                         value={username} 
+                        autoComplete="username"
                         onChange={handleInputChange} 
                         />
                 </Form.Field>

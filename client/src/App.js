@@ -11,11 +11,12 @@ import { Container } from 'semantic-ui-react'
 import Post from './routes/Post';
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from './client';
+import AuthRoute from './util/AuthRoute';
 
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-  console.log(isLoggedIn);
+
   return (
     <div className="App">
       <Router>
@@ -26,12 +27,8 @@ function App() {
               <Home />
             </Route>
             <Route path="/posts/:id" component={Post} />
-            {isLoggedIn ? null : (
-              <>
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-              </>
-            )}
+            <AuthRoute path="/login" component={Login} />
+            <AuthRoute path="/register" component={Register} />
             <Route path="/404" component={NotFound} />
             <Redirect from="*" to="/404" />
           </Switch>

@@ -82,6 +82,7 @@ function Register() {
                         type="email"
                         placeholder='Email' 
                         name="email"
+                        autoComplete="email"
                         value={values.email}
                         error={errors?.email ? true : false}
                         onChange={handleInputChange}

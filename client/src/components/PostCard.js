@@ -2,8 +2,7 @@ import React from "react";
 import { Button, Card, Icon, Label, Image } from "semantic-ui-react";
 import moment from 'moment';
 import {Link} from 'react-router-dom';
-import useUser from "../hooks/useUser";
-
+import LikeButton from './LikeButton';
 
 function PostCard({
         post: {
@@ -16,15 +15,9 @@ function PostCard({
         likeCount,
         commentCount,
         },
+        meData
     }) {
 
-    const {data} = useUser();
-
-    const handleLikePost = (e)=> {
-        console.log("like post")
-    };
-
-    
     return (
         <Card fluid>
             <Card.Content as={Link} to={`/posts/${id}`}>
@@ -38,14 +31,7 @@ function PostCard({
                 <Card.Description>{body}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-                <Button as='div' labelPosition='right' onClick={handleLikePost}>
-                    <Button color='red' basic>
-                        <Icon name='heart' />
-                    </Button>
-                    <Label basic color='red' pointing='left'>
-                        {likeCount}
-                    </Label>
-                </Button>
+                <LikeButton user={meData} post={{id, likes, likeCount}}/>
                 <Button labelPosition='right' as={Link} to={`/posts/${id}`}>
                     <Button color='teal' basic>
                         <Icon name='comments'/>
@@ -54,9 +40,9 @@ function PostCard({
                         {commentCount}
                     </Label>
                 </Button>
-                {data && data?.me?.username === username ? 
-                    <Button as="div" color="red">
-                        delete
+                {meData && meData?.me?.username === username ? 
+                    <Button as="div" floated="right" color="red" onClick={()=> console.log("delete Post")}>
+                        <Icon name='trash' style={{margin:0}} />
                     </Button>
                     : null
                 }
