@@ -26,9 +26,9 @@ function App() {
             <Route exact path="/" >
               <Home />
             </Route>
-            <Route path="/posts/:id" component={Post} />
-            <AuthRoute path="/login" component={Login} />
-            <AuthRoute path="/register" component={Register} />
+            <AuthRoute exact path="/login" component={Login} />
+            <AuthRoute exact path="/register" component={Register} />
+            <Route exact path="/posts/:id" component={Post} />
             <Route path="/404" component={NotFound} />
             <Redirect from="*" to="/404" />
           </Switch>

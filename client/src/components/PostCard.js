@@ -3,6 +3,7 @@ import { Button, Card, Icon, Label, Image } from "semantic-ui-react";
 import moment from 'moment';
 import {Link} from 'react-router-dom';
 import LikeButton from './LikeButton';
+import DeleteButton from "./DeleteButton";
 
 function PostCard({
         post: {
@@ -40,11 +41,8 @@ function PostCard({
                         {commentCount}
                     </Label>
                 </Button>
-                {meData && meData?.me?.username === username ? 
-                    <Button as="div" floated="right" color="red" onClick={()=> console.log("delete Post")}>
-                        <Icon name='trash' style={{margin:0}} />
-                    </Button>
-                    : null
+                {meData?.me?.username === username ? 
+                    <DeleteButton postId={id} /> : null
                 }
             </Card.Content>
         </Card>

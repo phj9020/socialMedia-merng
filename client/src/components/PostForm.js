@@ -31,7 +31,6 @@ function PostForm() {
     const {refetch} = useQuery(GET_POSTS);
 
     const newPostUpdate = (cache, result) => {
-        console.log(cache);
         const {data: {createPost}} = result;
         if(createPost) {
             refetch();
