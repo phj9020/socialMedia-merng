@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Confirm, Popup } from "semantic-ui-react";
+import { Popup } from "semantic-ui-react";
 
 function MyPopup({content, children}) {
 

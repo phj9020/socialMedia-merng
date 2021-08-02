@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import { Button, Icon, Label, Popup } from "semantic-ui-react";
+import { Button, Icon, Label } from "semantic-ui-react";
 import {gql, useMutation} from '@apollo/client';
 import { COMMENT_FRAGMENT, LIKE_FRAGMENT } from '../fragment';
 import MyPopup from '../util/MyPopup';
