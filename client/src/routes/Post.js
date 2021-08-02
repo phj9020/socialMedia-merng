@@ -6,6 +6,7 @@ import moment from 'moment';
 import LikeButton from '../components/LikeButton';
 import useUser from '../hooks/useUser';
 import DeleteButton from '../components/DeleteButton';
+import MyPopup from '../util/MyPopup';
 
 const GET_SINGLE_POST = gql`
     query getPost($postId: ID!) {
@@ -102,18 +103,16 @@ function Post(props) {
                             <hr/>
                             <CardContent extra>
                                 <LikeButton user={meData} post={{id, likes, likeCount}} />
-                                <Button
-                                    as='div' 
-                                    labelPosition='right' 
-                                    onClick={()=> console.log('comment on post')}
-                                >
-                                    <Button color='teal' basic>
-                                        <Icon name='comments'/>
+                                <MyPopup content='Comment on the Post'>
+                                    <Button as='div' labelPosition='right'>
+                                        <Button color='teal' basic>
+                                            <Icon name='comments'/>
+                                        </Button>
+                                        <Label basic color='teal' pointing='left'>
+                                            {commentCount}
+                                        </Label>
                                     </Button>
-                                    <Label basic color='teal' pointing='left'>
-                                        {commentCount}
-                                    </Label>
-                                </Button>
+                                </MyPopup>
                                 {meData?.me?.username === username ? 
                                     <DeleteButton postId={id} /> : null
                                 }

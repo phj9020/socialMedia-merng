@@ -3,6 +3,7 @@ import { Button, Icon, Confirm } from "semantic-ui-react";
 import {gql, useMutation} from '@apollo/client';
 import {useHistory} from 'react-router-dom';
 import { COMMENT_FRAGMENT, LIKE_FRAGMENT } from '../fragment';
+import MyPopup from '../util/MyPopup';
 
 const DELETE_POST_MUTATION = gql`
     mutation deletePost($postId: ID!) {
@@ -71,14 +72,19 @@ function DeleteButton({postId, commentId}) {
 
     return (
         <>
-            <Button as="div" floated="right" color="red" onClick={()=> setConfirmOpen(true)}>
+            <MyPopup 
+                content={commentId ? 'Delete Comment':'Delete Post' }
+            >
+                <Button as="div" floated="right" color="red" onClick={()=> setConfirmOpen(true)}>
                 <Icon name='trash' style={{margin:0}} />
-            </Button>
+                </Button>
+            </MyPopup>
             <Confirm 
-                open={confirmOpen}
-                onCancel={() => setConfirmOpen(false)}
-                onConfirm={deletePostOrComment}
+            open={confirmOpen}
+            onCancel={() => setConfirmOpen(false)}
+            onConfirm={deletePostOrComment}
             />
+            
         </>
     )
 }
